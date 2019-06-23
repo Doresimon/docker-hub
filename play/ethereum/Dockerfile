@@ -41,4 +41,6 @@ RUN geth account import /root/eth/private.2.key --password /root/eth/password
 RUN geth account new --password /root/eth/password
 
 EXPOSE 8545 8546 30303 30303/udp
-CMD ["/bin/bash"]
+
+# CMD ["/bin/bash"]
+CMD geth --rpc --rpccorsdomain "*" --rpcaddr 0.0.0.0 --networkid 6666 --nodiscover --verbosity 4
