@@ -22,6 +22,7 @@ ENV GETH_NAME=geth-alltools-linux-amd64-1.8.27-4bcc0a37
 ENV GETH_URL=https://gethstore.blob.core.windows.net/builds/${GETH_NAME}.tar.gz
 
 # COPY src/${GETH_NAME}.tar.gz /root/tmp/
+RUN mkdir /root/tmp
 RUN cd /root/tmp \
     && wget ${GETH_URL} \
     && tar -xzvf ${GETH_NAME}.tar.gz \
