@@ -1,0 +1,6 @@
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"],
+  "insecure-registries": ["hub-mirror.c.163.com"],
+  "debug": true,
+  "experimental": false
+}
