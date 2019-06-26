@@ -34,17 +34,21 @@ COPY src/genesis.json /root/eth/
 COPY src/password /root/eth/
 COPY src/private.1.key /root/eth/
 COPY src/private.2.key /root/eth/
+COPY src/private.3.key /root/eth/
 
 RUN geth --rpc --rpccorsdomain "*" --networkid 6666 init /root/eth/genesis.json 
 RUN geth account import /root/eth/private.1.key --password /root/eth/password
 RUN geth account import /root/eth/private.2.key --password /root/eth/password
+RUN geth account import /root/eth/private.3.key --password /root/eth/password
 RUN geth account new --password /root/eth/password
-# RUN geth account unlock --password /root/eth/password
 
 EXPOSE 8545 8546 30303 30303/udp
 
+# for manually start a geth
 CMD ["/bin/bash"]
+
+# for docker compose, use this CMD
 # CMD geth --rpc --rpccorsdomain "*" --rpcaddr 0.0.0.0 --networkid 6666 --nodiscover --verbosity 4 \
-#     --unlock 0xB33A1E07A250B8390aA3B0528864754107f5016a,0x8AF96F264057285341d367f90E30Ab3B280C399A \ 
+#     --unlock 0xB33A1E07A250B8390aA3B0528864754107f5016a,0x8AF96F264057285341d367f90E30Ab3B280C399A,0x86Ec35c43ad772775Ce1e76998E6DC8EcC49a776 \ 
 #     --password /root/eth/password \
 #     --mine --mine.treads 1
