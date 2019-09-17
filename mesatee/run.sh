@@ -12,8 +12,10 @@ cmake .
 make
 sudo make install
 
+# build docker image
+sudo docker build . -t sgx
 # start container
-docker run --rm -it --device /dev/isgx --device /dev/mei0 -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket sgx
+sudo docker run --rm -it --device /dev/isgx --device /dev/mei0 -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket sgx
 
 
 ##### failed sample 

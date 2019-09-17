@@ -65,21 +65,21 @@ RUN cd ~/sgx                                  && \
     echo -e 'no\n/opt/intel' | ./$SGX_LINUX_X64_SDK && \
     echo 'source /opt/intel/sgxsdk/environment' >> ~/.bashrc
 
-RUN mkdir ~/sgx/icls && \
-    cd ~/sgx/icls && \
-    wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11414/iclsClient-1.45.449.12-1.x86_64.rpm && \
-    alien --scripts iclsClient-1.45.449.12-1.x86_64.rpm && \
-    dpkg -i iclsclient_1.45.449.12-2_amd64.deb && \
-    rm -rf ~/sgx/icls
+# RUN mkdir ~/sgx/icls && \
+#     cd ~/sgx/icls && \
+#     wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11414/iclsClient-1.45.449.12-1.x86_64.rpm && \
+#     alien --scripts iclsClient-1.45.449.12-1.x86_64.rpm && \
+#     dpkg -i iclsclient_1.45.449.12-2_amd64.deb && \
+#     rm -rf ~/sgx/icls
 
-RUN mkdir ~/sgx/jhi && \
-    cd ~/sgx/jhi && \
-    git clone https://github.com/01org/dynamic-application-loader-host-interface.git && \
-    cd ~/sgx/jhi/dynamic-application-loader-host-interface && \
-    cmake . && \
-    make && \
-    make install && \
-    rm -rf ~/sgx/jhi
+# RUN mkdir ~/sgx/jhi && \
+#     cd ~/sgx/jhi && \
+#     git clone https://github.com/01org/dynamic-application-loader-host-interface.git && \
+#     cd ~/sgx/jhi/dynamic-application-loader-host-interface && \
+#     cmake . && \
+#     make && \
+#     make install && \
+#     rm -rf ~/sgx/jhi
 
 # install Rust
 
