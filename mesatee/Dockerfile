@@ -65,16 +65,16 @@ RUN cd ~/sgx                                  && \
     echo -e 'no\n/opt' | ./$SGX_LINUX_X64_SDK && \
     echo 'source /opt/sgxsdk/environment' >> ~/.bashrc
 
-# install Rust
+# # install Rust
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    . $HOME/.cargo/env                                                      && \
-    rustup default $RUST_TOOLCHAIN                                          && \
-    rustup component add rust-src rls rust-analysis clippy rustfmt          && \
-    rustup target install aarch64-unknown-linux-gnu                         && \
-    cargo install xargo                                                     && \
-    cargo install sccache                                                   && \
-    rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
+# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+#     . $HOME/.cargo/env                                                      && \
+#     rustup default $RUST_TOOLCHAIN                                          && \
+#     rustup component add rust-src rls rust-analysis clippy rustfmt          && \
+#     rustup target install aarch64-unknown-linux-gnu                         && \
+#     cargo install xargo                                                     && \
+#     cargo install sccache                                                   && \
+#     rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
 
 # install dependencies for testing and coverage
 
@@ -85,12 +85,13 @@ RUN apt-get install -q -y \
     llvm \
     curl
 
+
+# compile mesatee
+
+RUN cd ~ && \
+    git clone https://github.com/mesalock-linux/mesatee.git     
+
 # clean up apt caches
 
 RUN apt-get clean && \
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# # compile mesatee
-
-# RUN cd ~                                                              && \
-#     git clone https://github.com/mesalock-linux/mesatee.git            && \
