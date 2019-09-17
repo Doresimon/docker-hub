@@ -65,16 +65,32 @@ RUN cd ~/sgx                                  && \
     echo -e 'no\n/opt/intel' | ./$SGX_LINUX_X64_SDK && \
     echo 'source /opt/intel/sgxsdk/environment' >> ~/.bashrc
 
-# # install Rust
+RUN mkdir ~/sgx/icls && \
+    cd ~/sgx/icls && \
+    wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11414/iclsClient-1.45.449.12-1.x86_64.rpm && \
+    alien --scripts iclsClient-1.45.449.12-1.x86_64.rpm && \
+    dpkg -i iclsclient_1.45.449.12-2_amd64.deb && \
+    rm -rf ~/sgx/icls
 
-# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-#     . $HOME/.cargo/env                                                      && \
-#     rustup default $RUST_TOOLCHAIN                                          && \
-#     rustup component add rust-src rls rust-analysis clippy rustfmt          && \
-#     rustup target install aarch64-unknown-linux-gnu                         && \
-#     cargo install xargo                                                     && \
-#     cargo install sccache                                                   && \
-#     rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
+RUN mkdir ~/sgx/jhi && \
+    cd ~/sgx/jhi && \
+    git clone https://github.com/01org/dynamic-application-loader-host-interface.git && \
+    cd ~/sgx/jhi/dynamic-application-loader-host-interface && \
+    cmake . && \
+    make && \
+    make install && \
+    rm -rf ~/sgx/jhi
+
+# install Rust
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    . $HOME/.cargo/env                                                      && \
+    rustup default $RUST_TOOLCHAIN                                          && \
+    rustup component add rust-src rls rust-analysis clippy rustfmt          && \
+    rustup target install aarch64-unknown-linux-gnu                         && \
+    cargo install xargo                                                     && \
+    cargo install sccache                                                   && \
+    rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
 
 # install dependencies for testing and coverage
 
@@ -85,13 +101,18 @@ RUN apt-get install -q -y \
     llvm \
     curl
 
-
-# compile mesatee
-
-RUN cd ~ && \
-    git clone https://github.com/mesalock-linux/mesatee.git     
-
 # clean up apt caches
 
 RUN apt-get clean && \
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# compile mesatee
+
+# RUN cd ~ && \
+#     git clone https://github.com/mesalock-linux/mesatee.git && \
+#     cd mesatee && \
+#     mkdir build && cd build && \
+#     cmake -DSGX_SDK=$SGX_SDK -DSGX_MODE=$SGX_MODE -DCMAKE_BUILD_TYPE=DEBUG .. && \
+#     make VERBOSE=1
+
+
