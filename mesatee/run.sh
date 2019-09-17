@@ -1,0 +1,1 @@
+docker run --rm -it --device /dev/isgx --device /dev/mei0 sgx

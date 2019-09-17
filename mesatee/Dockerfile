@@ -62,8 +62,8 @@ RUN cd ~/sgx                                  && \
     dpkg -i $LIBSGX_ENCLAVE_COMMON_DEV        && \
     dpkg -i $LIBSGX_ENCLAVE_COMMON_DBGSYM     && \
     chmod u+x $SGX_LINUX_X64_SDK              && \
-    echo -e 'no\n/opt' | ./$SGX_LINUX_X64_SDK && \
-    echo 'source /opt/sgxsdk/environment' >> ~/.bashrc
+    echo -e 'no\n/opt/intel' | ./$SGX_LINUX_X64_SDK && \
+    echo 'source /opt/intel/sgxsdk/environment' >> ~/.bashrc
 
 # # install Rust
 
