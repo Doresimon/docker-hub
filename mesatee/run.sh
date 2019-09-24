@@ -17,6 +17,11 @@ sudo docker build . -t sgx
 # start container
 sudo docker run --rm -it --device /dev/isgx --device /dev/mei0 -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket sgx
 
+# build mesatee
+. ./environment # unlike cmake, environment variables need to be sourced for makefile
+export SGX_MODE=SW
+make VERBOSE=1 # enable verbose build output
+
 
 ##### failed sample 
 # 1. RemoteAttestation

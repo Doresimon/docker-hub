@@ -65,32 +65,7 @@ RUN cd ~/sgx                                  && \
     echo -e 'no\n/opt/intel' | ./$SGX_LINUX_X64_SDK && \
     echo 'source /opt/intel/sgxsdk/environment' >> ~/.bashrc
 
-# RUN mkdir ~/sgx/icls && \
-#     cd ~/sgx/icls
-
-# COPY iclsClient-1.45.449.12-1.x86_64.rpm ~/sgx/icls
-
-# RUN alien --scripts iclsClient-1.45.449.12-1.x86_64.rpm && \
-#     dpkg -i iclsclient_1.45.449.12-2_amd64.deb && \
-#     rm -rf ~/sgx/icls
-# RUN mkdir ~/sgx/icls && \
-#     cd ~/sgx/icls && \
-#     wget http://registrationcenter-download.intel.com/akdlm/irc_nas/11414/iclsClient-1.45.449.12-1.x86_64.rpm && \
-#     alien --scripts iclsClient-1.45.449.12-1.x86_64.rpm && \
-#     dpkg -i iclsclient_1.45.449.12-2_amd64.deb && \
-#     rm -rf ~/sgx/icls
-
-# RUN mkdir ~/sgx/jhi && \
-#     cd ~/sgx/jhi && \
-#     git clone https://github.com/01org/dynamic-application-loader-host-interface.git && \
-#     cd ~/sgx/jhi/dynamic-application-loader-host-interface && \
-#     cmake . && \
-#     make && \
-#     make install && \
-#     rm -rf ~/sgx/jhi
-
 # install Rust
-
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     . $HOME/.cargo/env                                                      && \
     rustup default $RUST_TOOLCHAIN                                          && \
@@ -98,10 +73,26 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     rustup target install aarch64-unknown-linux-gnu                         && \
     cargo install xargo                                                     && \
     cargo install sccache                                                   && \
-    rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git
+    rm -rf /root/.cargo/registry && rm -rf /root/.cargo/git                 && \
+    echo 'source $HOME/.cargo/env' >> ~/.bashrc 
+
+# compile mesatee
+RUN cd ~ && \
+    git clone https://github.com/mesalock-linux/mesatee.git
+
+# source $HOME/.cargo/env
+ENV PATH /root/.cargo/bin:$PATH
+# RUN echo $PATH
+
+# build mesatee
+RUN cd ~/mesatee && \
+    . $HOME/.cargo/env && \
+    mkdir build && \
+    cd build && \ 
+    cmake -DSGX_SDK=/opt/intel/sgxsdk -DSGX_MODE=HW -DCMAKE_BUILD_TYPE=DEBUG .. && \
+    make VERBOSE=1
 
 # install dependencies for testing and coverage
-
 RUN apt-get install -q -y \
     lsof \
     procps \
@@ -110,17 +101,11 @@ RUN apt-get install -q -y \
     curl
 
 # clean up apt caches
-
 RUN apt-get clean && \
     rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# compile mesatee
+WORKDIR /root
 
-# RUN cd ~ && \
-#     git clone https://github.com/mesalock-linux/mesatee.git && \
-#     cd mesatee && \
-#     mkdir build && cd build && \
-#     cmake -DSGX_SDK=$SGX_SDK -DSGX_MODE=$SGX_MODE -DCMAKE_BUILD_TYPE=DEBUG .. && \
-#     make VERBOSE=1
-
-
+# 创建 ias_spid 和 ias_key
+RUN echo "1825E5672DE30E2F0C29C0CCBD193B74" > /root/mesatee/bin/ias_spid.txt
+RUN echo "3e8c48b2c12344b7807fd25761d06067" > /root/mesatee/bin/ias_key.txt
