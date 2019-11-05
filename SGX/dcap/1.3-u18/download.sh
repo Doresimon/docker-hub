@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./_env.sh
-source ../_function.sh
+source ../common/_function.sh
 
 mkdir $INSTALLER_DIR
 cd $INSTALLER_DIR

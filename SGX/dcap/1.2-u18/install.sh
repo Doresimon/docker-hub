@@ -1,7 +1,7 @@
 #!/bin/bash
 # install lib & driver & sdk
 source ./_env.sh
-source ../_function.sh
+source ../common/_function.sh
 
 # root required
 if test $(id -u) -ne 0; then
