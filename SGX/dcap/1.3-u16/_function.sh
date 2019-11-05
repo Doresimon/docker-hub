@@ -12,12 +12,11 @@ __fn__notice_done(){
 
 # nodejs
 __fn__ensure_node(){
-    $NODEJS=node
-    if command -v $NODEJS >/dev/null 2>&1; 
+    if command -v node >/dev/null 2>&1; 
     then
-        echo "$NODEJS found, good~"
+        echo "nodejs found, good~"
     else
-        echo "$NODEJS not found, try to install it."
+        echo "nodejs not found, try to install it."
         # Using Ubuntu
         curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
         sudo apt-get install -y nodejs

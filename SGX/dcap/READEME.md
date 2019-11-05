@@ -8,7 +8,7 @@
 sudo apt-get update
 # ubuntu 16
 sudo apt-get install \
-build-essential ocaml automake autoconf libtool wget python libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake zip alien
+build-essential ocaml automake autoconf libtool wget python libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake zip alien dkms
 # ubuntu 18
 sudo apt-get install \
 build-essential ocaml ocamlbuild automake autoconf libtool wget python libssl-dev libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper cmake zip alien
