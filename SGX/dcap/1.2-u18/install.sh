@@ -27,11 +27,11 @@ __fn__notice_done
 # install lib
 __fn__notice "install enclave common loader"
 sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON
-sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON_DEV $FNAME_LIBSGX_ENCLAVE_COMMON_DBGSYM
+sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON_DEV
 __fn__notice "install dcap ql lib"
-sudo dpkg -i $FNAME_LIBSGX_DCAP_QL $FNAME_LIBSGX_DCAP_QL_DEV $FNAME_LIBSGX_DCAP_QL_DBG
+sudo dpkg -i $FNAME_LIBSGX_DCAP_QL $FNAME_LIBSGX_DCAP_QL_DEV
 __fn__notice "install dcap default qpl lib"
-sudo dpkg -i $FNAME_LIBSGX_DCAP_DEFAULT_QPL $FNAME_LIBSGX_DCAP_DEFAULT_QPL_DEV $FNAME_LIBSGX_DCAP_DEFAULT_QPL_DBG
+sudo dpkg -i $FNAME_LIBSGX_DCAP_DEFAULT_QPL $FNAME_LIBSGX_DCAP_DEFAULT_QPL_DEV
 __fn__notice "install dcap pccs"
 __fn__ensure_node # node 
 sudo dpkg -i $FNAME_LIBSGX_DCAP_PCCS
