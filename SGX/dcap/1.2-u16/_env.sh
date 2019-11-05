@@ -1,18 +1,18 @@
 #!/bin/bash
 
-SGX_DOWNLOAD_URL_BASE="https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer18.04"
+SGX_DOWNLOAD_URL_BASE="https://download.01.org/intel-sgx/dcap-1.2/linux/dcap_installers/ubuntuServer16.04"
 
 # download file name
-LIBSGX_DCAP_DEFAULT_QPL_DBG=libsgx-dcap-default-qpl-dbg_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_DEFAULT_QPL_DEV=libsgx-dcap-default-qpl-dev_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_DEFAULT_QPL=libsgx-dcap-default-qpl_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_PCCS=libsgx-dcap-pccs_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_QL_DBG=libsgx-dcap-ql-dbg_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_QL_DEV=libsgx-dcap-ql-dev_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_DCAP_QL=libsgx-dcap-ql_1.2.100.51313-bionic1_amd64.deb
-LIBSGX_ENCLAVE_COMMON_DBGSYM=libsgx-enclave-common-dbgsym_2.6.100.51363-bionic1_amd64.ddeb
-LIBSGX_ENCLAVE_COMMON_DEV=libsgx-enclave-common-dev_2.6.100.51363-bionic1_amd64.deb
-LIBSGX_ENCLAVE_COMMON=libsgx-enclave-common_2.6.100.51363-bionic1_amd64.deb
+LIBSGX_DCAP_DEFAULT_QPL_DBG=libsgx-dcap-default-qpl-dbg_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_DEFAULT_QPL_DEV=libsgx-dcap-default-qpl-dev_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_DEFAULT_QPL=libsgx-dcap-default-qpl_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_PCCS=libsgx-dcap-pccs_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_QL_DBG=libsgx-dcap-ql-dbg_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_QL_DEV=libsgx-dcap-ql-dev_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_DCAP_QL=libsgx-dcap-ql_1.2.100.51313-xenial1_amd64.deb
+LIBSGX_ENCLAVE_COMMON_DBGSYM=libsgx-enclave-common-dbgsym_2.6.100.51363-xenial1_amd64.ddeb
+LIBSGX_ENCLAVE_COMMON_DEV=libsgx-enclave-common-dev_2.6.100.51363-xenial1_amd64.deb
+LIBSGX_ENCLAVE_COMMON=libsgx-enclave-common_2.6.100.51363-xenial1_amd64.deb
 SGX_LINUX_X64_DRIVER=sgx_linux_x64_driver_1.12_c110012.bin
 SGX_LINUX_X64_SDK=sgx_linux_x64_sdk_2.6.100.51363.bin
 
