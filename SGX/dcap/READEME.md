@@ -67,4 +67,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     cargo install sccache
 ```
 
+## mei check
 
+https://www.intel.com/content/www/us/en/support/products/34227/software/chipset-software/intel-management-engine.html
