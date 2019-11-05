@@ -13,9 +13,9 @@ sudo apt install -y cmake pkg-config uuid-dev libxml2-dev libsystemd-dev
 # sudo make install
 
 # build docker image
-sudo docker build . -t sgx
+sudo docker build . -t mesatee
 # start container
-sudo docker run --rm -it --device /dev/isgx --device /dev/mei0 -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket sgx
+sudo docker run --rm -it --device /dev/isgx --device /dev/mei0 -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket mesatee
 
 # build mesatee
 . ./environment # unlike cmake, environment variables need to be sourced for makefile
