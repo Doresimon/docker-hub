@@ -38,9 +38,9 @@ __fn__notice_done
 
 # setup pccs service 
 __fn__notice "setup dcap pccs"
-cd $CUR_DIR
 sed -i "s/\"hosts\": \"127.0.0.1\"/\"hosts\": \"0.0.0.0\"/g" $SGX_DIR/libsgx-dcap-pccs/config/default.json
 sed -i "s/\"ApiKey\": \"\"/\"ApiKey\": \"$DCAP_API_KEY\"/g" $SGX_DIR/libsgx-dcap-pccs/config/default.json
+cd $CUR_DIR/keystore
 __fn__gen_self_signed_cert
 cp ./keystore/file.crt $SGX_DIR/libsgx-dcap-pccs/
 cp ./keystore/private.pem $SGX_DIR/libsgx-dcap-pccs/
