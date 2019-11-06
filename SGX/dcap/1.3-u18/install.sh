@@ -41,8 +41,8 @@ sed -i "s/\"hosts\": \"127.0.0.1\"/\"hosts\": \"0.0.0.0\"/g" $SGX_DIR/libsgx-dca
 sed -i "s/\"ApiKey\": \"\"/\"ApiKey\": \"$DCAP_API_KEY\"/g" $SGX_DIR/libsgx-dcap-pccs/config/default.json
 cd $CUR_DIR/keystore
 __fn__gen_self_signed_cert
-cp ./keystore/file.crt $SGX_DIR/libsgx-dcap-pccs/
-cp ./keystore/private.pem $SGX_DIR/libsgx-dcap-pccs/
+cp $CUR_DIR/keystore/file.crt $SGX_DIR/libsgx-dcap-pccs/
+cp $CUR_DIR/keystore/private.pem $SGX_DIR/libsgx-dcap-pccs/
 
 cd $SGX_DIR/libsgx-dcap-pccs
 echo -e "$PCCS_TOKEN\n$PCCS_TOKEN" | sudo ./install.sh
