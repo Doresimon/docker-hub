@@ -32,7 +32,7 @@ __fn__gen_self_signed_cert(){
     then
         echo "self-signed cert not found, try to generate it."
         openssl genrsa 1024 > $FNAME_PRIVATE_KEY_PEM 
-        openssl req -new -key $FNAME_PRIVATE_KEY_PEM -out $FNAME_CERT_REQUEST_PEM
+        echo -e "\n\n\n\n\n\n\n\n\n" | openssl req -new -key $FNAME_PRIVATE_KEY_PEM -out $FNAME_CERT_REQUEST_PEM
         openssl x509 -req -days 3650 -in $FNAME_CERT_REQUEST_PEM -signkey $FNAME_PRIVATE_KEY_PEM -out $FNAME_CERT_PEM
     else
         echo "self-signed cert found, good~"
