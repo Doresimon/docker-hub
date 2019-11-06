@@ -25,7 +25,8 @@ __fn__notice_done
 
 # install lib
 __fn__notice "install enclave common loader"
-sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON $FNAME_LIBSGX_ENCLAVE_COMMON_DEV
+sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON
+sudo dpkg -i $FNAME_LIBSGX_ENCLAVE_COMMON_DEV
 __fn__notice "install dcap ql lib"
 sudo dpkg -i $FNAME_LIBSGX_DCAP_QL $FNAME_LIBSGX_DCAP_QL_DEV
 __fn__notice "install dcap default qpl lib"
@@ -40,6 +41,7 @@ __fn__notice "setup dcap pccs"
 cd $CUR_DIR
 sed -i "s/\"hosts\": \"127.0.0.1\"/\"hosts\": \"0.0.0.0\"/g" $SGX_DIR/libsgx-dcap-pccs/config/default.json
 sed -i "s/\"ApiKey\": \"\"/\"ApiKey\": \"$DCAP_API_KEY\"/g" $SGX_DIR/libsgx-dcap-pccs/config/default.json
+__fn__gen_self_signed_cert
 cp ./keystore/file.crt $SGX_DIR/libsgx-dcap-pccs/
 cp ./keystore/private.pem $SGX_DIR/libsgx-dcap-pccs/
 

@@ -9,7 +9,6 @@ if test $(id -u) -ne 0; then
     exit 1
 fi
 
-
 # folder created by download.sh
 cd $INSTALLER_DIR
 
