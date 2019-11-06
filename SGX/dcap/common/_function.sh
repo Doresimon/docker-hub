@@ -28,7 +28,7 @@ __fn__gen_self_signed_cert(){
     FNAME_PRIVATE_KEY_PEM=private.pem
     FNAME_CERT_REQUEST_PEM=csr.pem
     FNAME_CERT_PEM=file.crt
-    if [ ! -f "$FNAME_PRIVATE_KEY_PEM"];
+    if [ ! -f "$FNAME_PRIVATE_KEY_PEM" ];
     then
         echo "self-signed cert not found, try to generate it."
         openssl genrsa 1024 > $FNAME_PRIVATE_KEY_PEM 
