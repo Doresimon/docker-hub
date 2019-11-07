@@ -10,7 +10,7 @@ __fn__notice_done(){
     echo "######## done ########"
 }
 
-# nodejs
+# check and install nodejs
 __fn__ensure_node(){
     if command -v node >/dev/null 2>&1; 
     then
